@@ -43,12 +43,13 @@ export default class ListItem extends Component {
 
 
     let imageItem = <LoadingIndicator/>
+    const defaultImageSource = require('../../images/placeholder/user.png')
+
     if (!this.props.showImageLoading) {
       imageItem = this.props.hideImage ? null :
         <View style={styles.imageContainer}>
           <Image
-            source={require('../../images/placeholder/user.png')}
-            defaultSource={require('../../images/placeholder/user.png')}
+            source={this.props.imageUri ? {uri: this.props.imageUri} : defaultImageSource}
             style={[styles.image, (this.props.style || {}).image]}
           />
           {bubbleMarkup}
