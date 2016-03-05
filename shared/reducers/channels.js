@@ -1,4 +1,4 @@
-import { SENDBIRD_LIST_CHANNELS } from '../constants/ActionTypes'
+import { SENDBIRD_LIST_CHANNELS, SENDBIRD_JOIN_CHANNEL } from '../constants/ActionTypes'
 
 export default function channels(state = {}, action) {
   switch (action.type) {
@@ -13,6 +13,19 @@ export default function channels(state = {}, action) {
             ...memo,
             [channel.id]: channel
           }), {})
+        }
+      )
+    case SENDBIRD_JOIN_CHANNEL:
+      console.log('reducer joined', state.joined)
+
+      return Object.assign(
+        {},
+        state,
+        {
+          joined: {
+              ...state.joined,
+              [action.data.name]: action.data
+          }
         }
       )
     default:

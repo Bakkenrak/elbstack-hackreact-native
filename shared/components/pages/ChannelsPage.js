@@ -8,7 +8,7 @@ import React, {
 } from 'react-native'
 import { connect } from 'react-redux/native'
 
-import { listChannels } from '../../actions/channels'
+import { listChannels, joinChannel } from '../../actions/channels'
 
 import ActionBar from '../container/ActionBar'
 import ListItem from '../container/ListItem'
@@ -43,7 +43,10 @@ class ChannelsPage extends Component {
           imageUri={chan.cover_img_url}
           bubble={chan.member_count}
           key={chan.id}
-          onPress={this.props.navigateTo.bind(this, 'messenger', chan.channel_url)}
+          onPress={() => {
+              this.props.joinChannel(chan.channel_url)
+              this.props.navigateTo.call(this, 'messenger', chan.channel_url)
+          }}
         ></ListItem>
       )})
     }
@@ -71,6 +74,7 @@ export default connect(
   (state) => ({channelList: state.channels.list}),
   {
     navigateTo,
-    listChannels
+    listChannels,
+    joinChannel
   }
 )(ChannelsPage)

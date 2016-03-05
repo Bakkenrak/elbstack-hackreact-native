@@ -26,11 +26,21 @@ class MenuContainer extends Component {
   render() {
 
     const publicChannels = []
+    let joinedChannels = {}
 
-    let publicChannelsDummy = []
-    publicChannelsDummy.forEach((channelName) => {
+    if (this.props.channels) {
+        joinedChannels = this.props.channels.joined || {}
+    }
+
+    console.log('dummies', joinedChannels)
+
+    Object.keys(joinedChannels).forEach((channelName) => {
       publicChannels.push(
-        <MenuItemContainer key={'MenuChannel' + channelName} text={channelName} navTarget='conversation'/>
+        <MenuItemContainer
+            key={'MenuChannel' + channelName}
+            text={channelName}
+            navTarget='conversation'
+            handlePress={this.props.navigateTo.bind(this, 'messenger', joinedChannels[channelName].channel_url)}/>
       )
     })
 
@@ -132,7 +142,8 @@ export default connect(
   (state) => {
     return {
       login: state.login,
-      notifications: state.notifications
+      notifications: state.notifications,
+      channels: state.channels
     }
   },
   (dispatch) => {
