@@ -30,10 +30,10 @@ class ChannelsPage extends Component {
 
   render() {
     let interactionsFinishedMarkup = <LoadingIndicator/>
+    const channels = this.props.channelList
 
-    if (this.state.interactionsFinished) {
-      this.props.listChannels()
-    //   interactionsFinishedMarkup = <Text>Lade Channels</Text>
+    if (this.state.interactionsFinished && channels) {
+      interactionsFinishedMarkup = Object.keys(channels).map(channel => <Text>{channels[channel].name}</Text>)
     }
 
     return (
@@ -56,7 +56,7 @@ const styles = {
 
 
 export default connect(
-  null,
+  (state) => ({channelList: state.channels.list}),
   (dispatch) => {
     return {
       listChannels: () => dispatch(listChannels())
