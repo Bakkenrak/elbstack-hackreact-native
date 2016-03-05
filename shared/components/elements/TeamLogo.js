@@ -11,10 +11,13 @@ export default class TeamLogo extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Image
-          style={styles.image}
-          source={require('../../../assets/Images/flask.png')} />
-        <Text>Die Experimentierer</Text>
+
+        <Text>
+          <Image
+            style={styles.image}
+            source={require('../../../assets/Images/flask.png')} />
+            <Text style={{fontSize: 23}}>Die Experimentierer</Text>
+          </Text>
       </View>
     )
   }
@@ -25,7 +28,7 @@ const styles = {
     margin: 20
   },
   image: {
-    width: 100,
-    height: 100
+    width: 50,
+    height: 50
   }
 }
