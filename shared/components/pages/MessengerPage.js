@@ -8,6 +8,8 @@ import React, {
 } from 'react-native'
 import { connect } from 'react-redux/native'
 
+import {joinChannel} from '../../actions/channels'
+
 import ActionBar from '../container/ActionBar'
 import LoadingIndicator from '../elements/LoadingIndicator'
 import Text from '../elements/Text'
@@ -30,12 +32,16 @@ class MessengerPage extends Component {
     if (this.state.interactionsFinished) {
       interactionsFinishedMarkup = <IntroText />
     }
-    console.log("blub", this.props.navParams)
+    const channel_url = this.props.navParams ? this.props.navParams.messenger : null;
+
+    this.props.joinChannel(channel_url)
+
     return (
       <View style={styles.container}>
         <ActionBar title="Messenger"/>
         <ScrollView showsVerticalScrollIndicator={false} keyboardShouldPersistTaps={true}>
           {interactionsFinishedMarkup}
+          <Text>{channel_url}</Text>
         </ScrollView>
       </View>
     )
@@ -52,5 +58,5 @@ const styles = {
 
 export default connect(
   (state) => ({navParams: state.navigation.params}),
-  null
+  {joinChannel}
 )(MessengerPage)

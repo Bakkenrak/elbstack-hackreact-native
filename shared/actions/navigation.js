@@ -45,7 +45,6 @@ export function resetTo(route, params) {
 }
 
 export function navigateTo(route, params) {
-  console.log("asdf", params)
   return (dispatch) => {
     const currentRoutes = navigatorManager.navigator.getCurrentRoutes()
     let alreadyInCurrentRoutesIndex = -1

@@ -43,7 +43,7 @@ class ChannelsPage extends Component {
           imageUri={chan.cover_img_url}
           bubble={chan.member_count}
           key={chan.id}
-          onPress={this.props.navigateTo.bind(this, 'messenger', chan.id)}
+          onPress={this.props.navigateTo.bind(this, 'messenger', chan.channel_url)}
         ></ListItem>
       )})
     }

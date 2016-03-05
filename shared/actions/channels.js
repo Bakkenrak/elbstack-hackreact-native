@@ -25,3 +25,27 @@ export function listChannels() {
     })
   }
 }
+
+export function joinChannel(url) {
+  return dispatch => {
+    sendbird.joinChannel(
+        url,
+        {
+          successFunc: (data) => {
+            console.log("asd", data)
+            dispatch({
+              type: SENDBIRD_JOIN_CHANNEL,
+              data: data
+            })
+          },
+          errorFunc: (status, error) => {
+            dispatch({
+              type: SENDBIRD_JOIN_CHANNEL_ERROR,
+              status: status,
+              error: error
+            })
+          }
+        }
+    )
+  }
+}
