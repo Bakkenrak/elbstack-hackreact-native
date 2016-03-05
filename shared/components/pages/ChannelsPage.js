@@ -32,7 +32,8 @@ class ChannelsPage extends Component {
     let interactionsFinishedMarkup = <LoadingIndicator/>
 
     if (this.state.interactionsFinished) {
-      interactionsFinishedMarkup = <Text>Lade Channels</Text>
+      this.props.listChannels()
+    //   interactionsFinishedMarkup = <Text>Lade Channels</Text>
     }
 
     return (

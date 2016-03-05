@@ -2,6 +2,7 @@ import React, { Text, View } from 'react-native'
 
 import InitialView from '../components/pages/InitialView'
 import MessengerPage from '../components/pages/MessengerPage'
+import ChannelsPage from '../components/pages/ChannelsPage'
 import SettingsPage from '../components/pages/SettingsPage'
 
 export default function renderScene(route) {
@@ -12,6 +13,9 @@ export default function renderScene(route) {
       break
     case 'messenger':
       currentView = <MessengerPage />
+      break
+    case 'channels':
+      currentView = <ChannelsPage />
       break
     case 'settings':
       currentView = <SettingsPage />
