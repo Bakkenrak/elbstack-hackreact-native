@@ -30,7 +30,7 @@ class MessengerPage extends Component {
     if (this.state.interactionsFinished) {
       interactionsFinishedMarkup = <IntroText />
     }
-
+    console.log("blub", this.props.navParams)
     return (
       <View style={styles.container}>
         <ActionBar title="Messenger"/>
@@ -51,6 +51,6 @@ const styles = {
 
 
 export default connect(
-  null,
+  (state) => ({navParams: state.navigation.params}),
   null
 )(MessengerPage)

@@ -16,6 +16,8 @@ import LoadingIndicator from '../elements/LoadingIndicator'
 import Text from '../elements/Text'
 import IntroText from '../elements/IntroText'
 
+import { navigateTo } from '../../actions/navigation'
+
 class ChannelsPage extends Component {
   state = {
     interactionsFinished: false
@@ -34,14 +36,16 @@ class ChannelsPage extends Component {
     const channels = this.props.channelList
 
     if (this.state.interactionsFinished && channels) {
-      interactionsFinishedMarkup = Object.keys(channels).map(channel => (
-        <ListItem
-          headline={channels[channel].name}
-          imageUri={channels[channel].cover_img_url}
-          bubble={channels[channel].member_count}
-          key={channels[channel].id}
+      interactionsFinishedMarkup = Object.keys(channels).map(channel => {
+        const chan = channels[channel];
+        return (<ListItem
+          headline={chan.name}
+          imageUri={chan.cover_img_url}
+          bubble={chan.member_count}
+          key={chan.id}
+          onPress={this.props.navigateTo.bind(this, 'messenger', chan.id)}
         ></ListItem>
-      ))
+      )})
     }
 
     return (
@@ -65,9 +69,8 @@ const styles = {
 
 export default connect(
   (state) => ({channelList: state.channels.list}),
-  (dispatch) => {
-    return {
-      listChannels: () => dispatch(listChannels())
-    }
+  {
+    navigateTo,
+    listChannels
   }
 )(ChannelsPage)
