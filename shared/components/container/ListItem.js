@@ -49,7 +49,8 @@ export default class ListItem extends Component {
       imageItem = this.props.hideImage ? null :
         <View style={styles.imageContainer}>
           <Image
-            source={this.props.imageUri ? {uri: this.props.imageUri} : defaultImageSource}
+            source={{uri: this.props.imageUri}}
+            defaultSource={defaultImageSource}
             style={[styles.image, (this.props.style || {}).image]}
           />
           {bubbleMarkup}
