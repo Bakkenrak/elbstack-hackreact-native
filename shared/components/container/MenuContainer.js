@@ -18,6 +18,8 @@ import MenuGroupLabel from '../elements/MenuGroupLabel'
 import MenuItem from '../elements/MenuItem'
 import MenuItemContainer from './MenuItemContainer'
 
+import TeamLogo from '../elements/TeamLogo'
+
 const window = Dimensions.get('window')
 
 class MenuContainer extends Component {
@@ -37,6 +39,8 @@ class MenuContainer extends Component {
         <View style={styles.statusbar}></View>
         <View style={styles.container}>
           <ScrollView style={styles.scrollContainer}>
+
+            <TeamLogo />
 
             <Profile />
 

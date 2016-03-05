@@ -13,8 +13,8 @@ export default class TeamLogo extends Component {
       <View style={styles.container}>
         <Image
           style={styles.image}
-          source={require('../../../assets/Images/react-native.png')} />
-        <Text>HackReact Team</Text>
+          source={require('../../../assets/Images/flask.png')} />
+        <Text>Die Experimentierer</Text>
       </View>
     )
   }
@@ -25,7 +25,7 @@ const styles = {
     margin: 20
   },
   image: {
-    width: 200,
+    width: 100,
     height: 100
   }
 }
