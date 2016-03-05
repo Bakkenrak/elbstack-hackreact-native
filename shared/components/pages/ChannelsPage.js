@@ -11,6 +11,7 @@ import { connect } from 'react-redux/native'
 import { listChannels } from '../../actions/channels'
 
 import ActionBar from '../container/ActionBar'
+import ListItem from '../container/ListItem'
 import LoadingIndicator from '../elements/LoadingIndicator'
 import Text from '../elements/Text'
 import IntroText from '../elements/IntroText'
@@ -33,7 +34,14 @@ class ChannelsPage extends Component {
     const channels = this.props.channelList
 
     if (this.state.interactionsFinished && channels) {
-      interactionsFinishedMarkup = Object.keys(channels).map(channel => <Text>{channels[channel].name}</Text>)
+      interactionsFinishedMarkup = Object.keys(channels).map(channel => (
+        <ListItem
+          headline={channels[channel].name}
+          imageUri={channels[channel].cover_img_url}
+          bubble={channels[channel].member_count}
+          key={channels[channel].id}
+        ></ListItem>
+      ))
     }
 
     return (
